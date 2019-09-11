@@ -81,7 +81,6 @@
 		\centering
 		\includegraphics[width=0.3\textwidth]{logo}
 	\end{figure}
-	\\  
 	\Large \textbf{Alkalmazott Informatikai Intézeti Tanszék}
 	\vskip 1cm
 	\huge \textbf{Blokkon levő adatok automatikus feldolgozása}
@@ -150,7 +149,7 @@ import cv2 as cv
 
 
 \subsection{Alapvető módosítások}
-A következő részben beolvastam a mintaképet, melyről készítettem egy másolatot, hogy majd visszatudjam később számolni az eredeti méretre vonatkozó szélességi és hosszúsági értékeket. Ezt azért tettem, mert a képet át kell méreteznem kisebbre a gyorsabb futás és jó eredmény eléréséhez. A megfelelő hosszúsági értéket 500px-nél határoztam meg, így igen hatékonyan lehet akár több tucat képpel is dolgozni egyszerre. A shape() függvénynel lekérdezhetjük a kép szélességét, hosszát egyaránt. Először kiszámoltom a kép arányát, az adott hossz és az eredeti hossz értékekből, majd meghívtam a resize() függvényt a kódban látható paraméterekkel.
+A következő részben beolvastam a mintaképet, melyről készítettem egy másolatot, hogy majd visszatudjam később számolni az eredeti méretre vonatkozó szélességi és hosszúsági értékeket. Ezt azért tettem, mert a képet át kell méreteznem kisebbre a gyorsabb futás és jó eredmény eléréséhez. A megfelelő hosszúsági értéket 500px-nél határoztam meg, így igen hatékonyan lehet akár több tucat képpel is dolgozni egyszerre. A shape()  függvénynel lekérdezhetjük a kép szélességét, hosszát egyaránt. Először kiszámoltom a kép arányát, az adott hossz és az eredeti hossz értékekből, majd meghívtam a resize() függvényt a kódban látható paraméterekkel.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=5cm]{1d_resized}
@@ -285,18 +284,19 @@ ret, thr = cv.threshold(bw,0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
 A programom jelenleg ennyit tud, amely így lényegében egy blokkolvasó eddig. Most következik majd az érdekesebb rész, ami még nincs teljesen implementálva, ezért csak néhány vázlatot mutatok be a szegmentációról és optikai karakter felismerésről a következő szekciókban.
 \newpage
 \subsection{Képen levő szövegcsoportok szegmentálása}
-Többféle módszer létezik a képen való objektumok, jelen esetben szöveg szegmentálására. Az egyik általában meghatározott környezetben zajlik amelyeket heurisztikus módszerekkel tudunk elérni, ilyen például az az eset amikor a szöveg bekezdésekben van csoportosítva és minden egyes karakter egy egyenes vonalon helyezkedik el. Egy másik módszer a természetes szöveg felismerés, amely egy teljesen más megközelítés, kicsit nehezebb. Ezért volt szükség  azokra a részfeladatokra a programomban, hogy egy tiszta olvasható képet kapjak, mert a lefényképezett natúr képpel nagyon nehezen lehetne dolgozni a bonyolultsága miatt. 2017-ben a Megvii Technology Inc kiadott egy tanulmányt az EAST ( Efficient and Accurate Scene Text) mély tanulás alapú saját szöveg felismerő algoritmusukról. Ez a módszer neurális hálón alapszik, amely direkt arra lett betanítva, hogy felismerje a szövegeket és azok geometriáját képekről. 
+Többféle módszer létezik a képen való objektumok, jelen esetben szöveg szegmentálására. Az egyik általában meghatározott környezetben zajlik amelyeket heurisztikus módszerekkel tudunk elérni, ilyen például az az eset amikor a szöveg bekezdésekben van csoportosítva és minden egyes karakter egy egyenes vonalon helyezkedik el. Egy másik módszer a természetes szöveg felismerés, amely egy teljesen más megközelítés, kicsit nehezebb. Ezért volt szükség  azokra a részfeladatokra a programomban, hogy egy tiszta olvasható képet kapjak, mert a lefényképezett natúr képpel nagyon nehezen lehetne dolgozni a bonyolultsága miatt. 2017-ben a Megvii Technology Inc kiadott egy tanulmányt az EAST ( Efficient and Accurate Scene Text)\cite{e} mély tanulás alapú saját szöveg felismerő algoritmusukról. Ez a módszer neurális hálón alapszik, amely direkt arra lett betanítva, hogy felismerje a szövegeket és azok geometriáját képekről. 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=8cm]{east}
-	\caption{EAST szöveg felismerő szerkezete (Teljes konvolúciós háló)}
+	\caption{EAST szöveg felismerő szerkezete (Teljes konvolúciós háló)\cite{east}}
 \end{figure}
-\\Megtalálható pár implementációja az interneten, viszont ezek nem egészen pontosan dolgoznak. Kifejezetten blokkokra kell majd betanítani, mert a jelenlegi kiadott model a természetes szövegekre van finomhangolva, ilyenek például a közlekedési táblák, hirdető táblák, stb.. Lényegében minden olyan szöveg, amely nagyobb méretben jelenik meg a valóságban, ellentétben a blokkal, ahol sok apró betűből álló szavak találhatók. Alább látható egy implementáció által kapott eredmény.
+Megtalálható pár implementációja az interneten, viszont ezek nem egészen pontosan dolgoznak. Kifejezetten blokkokra kell majd betanítani, mert a jelenlegi kiadott model a természetes szövegekre van finomhangolva, ilyenek például a közlekedési táblák, hirdető táblák, stb.. Lényegében minden olyan szöveg, amely nagyobb méretben jelenik meg a valóságban, ellentétben a blokkal, ahol sok apró betűből álló szavak találhatók. Alább látható egy implementáció által kapott eredmény.
+
 \newpage
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=5cm]{out}
-	\caption{Szöveg blokkok felismerése EAST szöveg felismerővel}
+	\caption{Szöveg blokkok felismerése EAST szöveg felismerővel \cite{east2}}
 \end{figure}
 
 A közeljövőben még számos lehetőséget kipróbálok majd, mert még van pár lehetséges megoldás, de egyelőre ez bizonyult a legegyszerűbbnek a teszteléshez. Bővebben a publikációban lehet róla olvasni, hogy hogyan történik a felismerés folyamata. 
@@ -305,14 +305,20 @@ A közeljövőben még számos lehetőséget kipróbálok majd, mert még van p�
 Az utolsó előtti rész az optikai karakterfelismerés lesz. A legelterjedtebb és leghatékonyabb eszköz erre a Tesseract nyíltforráskódú szövegfelismerő motor. Ennek segítségével fogom majd a meghatározott szövegblokkokról a szöveget felismerni. 
 Amint sikerül kiolvasnom a szöveget, ezt majd tárolni és hozzáférhetővé is kell tennem. Mivel ez egy egyszerű webes applikáció lesz, a Flask keretrendszert fogom használni. Egy egyszerű adatbázist csinálok SQLite segítségével az adatok tárolására. A webes felületen lehet majd elérni a beolvasott adatokat minden egyes blokkról, statisztikákat(hol,mennyiért,mit vásároltunk),stb...
 Nagyjából így nézne ki az egész programom működése, amelyre még sok munka vár. Remélem mihamarább elkészül a végleges változat és lehet majd tesztelni éles környezetben is. \
-
 \newpage
-\section{Források}
-\url{https://www.learnopencv.com/deep-learning-based-text-detection-using-opencv-c-python/}
-\\
-\url{https://docs.opencv.org/3.4.7/d6/d00/tutorial_py_root.html}
-\\
-\url{https://arxiv.org/pdf/1704.03155.pdf}
 
+\begin{thebibliography}{9}
+\bibitem{e}
+Zhou, X., Yao, C., Wen, H., Wang, Y., Zhou, S., He, W., & Liang, J. (2017). EAST: an efficient and accurate scene text detector. In Proceedings of the IEEE conference on Computer Vision and Pattern Recognition (pp. 5551-5560).
+
+\bibitem{east}
+EAST szöveg felismerő szerkezete (Teljes konvolúciós háló) 3. oldal: \url{https://arxiv.org/pdf/1704.03155.pdf}
+
+
+
+\bibitem{east2}
+Szöveg blokkok felismerése EAST szöveg felismerővel. Az implementáció ezen az oldalon található:  \url{https://www.learnopencv.com/deep-learning-based-text-detection-using-opencv-c-python}
+
+\end{thebibliography}
 
 \end{document}
