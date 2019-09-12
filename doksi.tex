@@ -83,15 +83,21 @@
 	\end{figure}
 	\Large \textbf{Alkalmazott Informatikai Intézeti Tanszék}
 	\vskip 1cm
-	\huge \textbf{Blokkon levő adatok automatikus feldolgozása}
+	\huge \textbf{Beszámoló szakmai gyakorlatról}
 	\vskip 1cm
 	\Large \textbf{Szakmai gyakorlat (GEIAKSzGyBI{\_}TM-B)}
+	\vskip 1cm
+	\Large \textbf{Blokkon levő adatok automatikus feldolgozása}
 	\vskip 1cm
 	\huge \textbf{Szabó Szilveszter Rafael}
 	\\
 	\LARGE \textbf{YTBR1C}
 	\vskip 1cm
-	\Large \textbf{Konzulens: Piller Imre}
+	\large \textbf{Konzulens: Piller Imre}
+	\\
+	\large \textbf{Beosztás: egyetemi tanársegéd}
+	\\
+	\large \textbf{Telefonszám: +36-46/565-111/1450}
 
 \end{center}
 
@@ -124,7 +130,7 @@ A fejlesztés során törekedtem, hogy minél több technológiát, eszközt meg
 	\item Flask	
 \end{itemize}
 
-Az OpenCV, ahogy nevéből is adódik (Open Source Computer Vision Library) egy nyílt forráskódú számítógépi látással (és gépi tanulással) foglalkozó programozói könyvtár, melyet azért írtak, hogy egységes környezetet biztosítson a gépi látással foglalkozó programoknak. 2500-nál is több optimizált algoritmus található benne melyek egészen széles alkalmazási terület lefednek, párat ebből kiemelve ami számomra is fontos szerepet játszik, ilyen például az objektum felismerés, a  képi szegmentáció és felismerés.
+Az OpenCV\cite{opencv}, ahogy nevéből is adódik (Open Source Computer Vision Library) egy nyílt forráskódú számítógépi látással (és gépi tanulással) foglalkozó programozói könyvtár, melyet azért írtak, hogy egységes környezetet biztosítson a gépi látással foglalkozó programoknak. 2500-nál is több optimizált algoritmus található benne melyek egészen széles alkalmazási terület lefednek, párat ebből kiemelve ami számomra is fontos szerepet játszik, ilyen például az objektum felismerés, a  képi szegmentáció és felismerés.
 
 A NumPy egy olyan csomag Python-hoz mely nélkülözhetetlen a tudományos számításokhoz, nagy többdimenziós tömbök és mátrixok használatát támogatja egy nagy magas szintű matematikai függvénykönvytárral.
 
@@ -308,13 +314,14 @@ Nagyjából így nézne ki az egész programom működése, amelyre még sok mun
 \newpage
 
 \begin{thebibliography}{9}
+\bibitem{opencv}
+\url{https://docs.opencv.org/3.4.7/index.html}
+
 \bibitem{e}
 Zhou, X., Yao, C., Wen, H., Wang, Y., Zhou, S., He, W., & Liang, J. (2017). EAST: an efficient and accurate scene text detector. In Proceedings of the IEEE conference on Computer Vision and Pattern Recognition (pp. 5551-5560).
 
 \bibitem{east}
 EAST szöveg felismerő szerkezete (Teljes konvolúciós háló) 3. oldal: \url{https://arxiv.org/pdf/1704.03155.pdf}
-
-
 
 \bibitem{east2}
 Szöveg blokkok felismerése EAST szöveg felismerővel. Az implementáció ezen az oldalon található:  \url{https://www.learnopencv.com/deep-learning-based-text-detection-using-opencv-c-python}
